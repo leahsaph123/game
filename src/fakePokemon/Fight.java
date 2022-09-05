@@ -31,7 +31,7 @@ public class Fight {
 		// declaring ability details to be more interesting text
 		char1Abilities.characterAbilityDetails = "Crayon barks at his enemies, scaring them and dealing " + char1Abilities.characterAbilityDamage + " damage";
 		char2Abilities.characterAbilityDetails = "Marker hisses at enemies, dealing " + char2Abilities.characterAbilityDamage + " damage";
-		char3Abilities.characterAbilityDetails = "Charry breathes fire on his opponent, dealing" + char3Abilities.characterAbilityDamage + " damage";
+		char3Abilities.characterAbilityDetails = "Charry breathes fire on his opponent, dealing " + char3Abilities.characterAbilityDamage + " damage";
 		
 		// putting each character into a list in order to more easily access the character chosen by player
 		List<Character.Abilities> characterList = new ArrayList<Character.Abilities>();
@@ -77,30 +77,58 @@ public class Fight {
 		Character.Abilities enemy = characterList.get(enemyChoiceNumber - 1);
 		
 		// start fighting
-		Scanner chosenAttack = new Scanner(System.in);
+		Scanner attackChoice = new Scanner(System.in);
 		System.out.println("----------------");
 		System.out.println("Fight Starts Now");
 		System.out.println("----------------");
 		
-		// get input to attack
-		System.out.println("Choose your attack: ");
-		System.out.println("Press 1 for: \n" + mainPlayer.characterAbility + ": " + mainPlayer.characterAbilityDetails);
-		System.out.println(mainPlayer.characterName + " attacks with " + mainPlayer.characterAbility + " which deals " + mainPlayer.characterAbilityDamage + " to " + enemy.characterName);
-		System.out.println(mainPlayer.characterAppears);
+		int enemyCurrentHealth = enemy.characterMaxHealth;
+		int playerCurrentHealth = mainPlayer.characterMaxHealth;
+
+
 		
-		// update enemy health
-		int enemyCurrentHealth = enemy.characterMaxHealth - mainPlayer.characterAbilityDamage;
-		System.out.println(enemy.characterName + " is now at " + enemyCurrentHealth + " health");
+		while (enemyCurrentHealth > 0 && playerCurrentHealth > 0) {
+			// get input to attack
+			System.out.println("Choose your attack: ");
+			System.out.println("Press 1 for: \n" + mainPlayer.characterAbility + ": " + mainPlayer.characterAbilityDetails);
+			int chosenAttack = attackChoice.nextInt();
+			while (chosenAttack != 1) {
+				System.out.println("Invalid attack. Please choose 1");
+				chosenAttack = attackChoice.nextInt();
+			}
+			System.out.println(mainPlayer.characterName + " attacks with " + mainPlayer.characterAbility + " which deals " + mainPlayer.characterAbilityDamage + " to " + enemy.characterName);
+			System.out.println(mainPlayer.characterAppears);
+			
+			// update enemy health
+			enemyCurrentHealth = enemyCurrentHealth - mainPlayer.characterAbilityDamage;
+			if (enemyCurrentHealth > 0) {
+				System.out.println(enemy.characterName + " is now at " + enemyCurrentHealth + " health");
+			}
+			
+			// enemy attack
+			System.out.println("BUT! " + enemy.characterName + " strikes back with " + enemy.characterAbility + ": " + enemy.characterAbilityDetails);
+			System.out.println(enemy.characterAppears);
+			
+			// update player health
+			playerCurrentHealth = playerCurrentHealth - enemy.characterAbilityDamage;
+			// only show the number between plays, not at end of game
+			if (playerCurrentHealth > 0) {
+				System.out.println(mainPlayer.characterName + " is now at " + playerCurrentHealth + " health");
+			}
+		}
 		
-		// enemy attack
-		System.out.println("BUT! " + enemy.characterName + " strikes back with " + enemy.characterAbility + ": " + enemy.characterAbilityDetails);
-		System.out.println(enemy.characterAppears);
+		if (enemyCurrentHealth <= 0) {
+			System.out.println("---------------");
+			System.out.println("CONGRATULATIONS");
+			System.out.println("    YOU WIN!");
+		}
+		else {
+			System.out.println("--------------");
+			System.out.println("   YOU LOST");
+		}
 		
-		// update player health
-		int playerCurrentHealth = mainPlayer.characterMaxHealth - enemy.characterAbilityDamage;
-		System.out.println(mainPlayer.characterName + " is now at " + playerCurrentHealth + " health");
 		
-		
+		// right now, if the player wins on the second turn, the enemy will still do damage even though theyre dead
 		
 		
 		/*
