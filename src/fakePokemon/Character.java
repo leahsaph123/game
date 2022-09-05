@@ -1,7 +1,6 @@
 package fakePokemon;
 
-import java.util.Random;
-
+// Character.java sets up characters and their abilities
 public class Character {
 	// instance/declare variables
 	String characterName;
@@ -41,33 +40,9 @@ public class Character {
 	}
 	
 	// setup of "mainplayer"-- should have currentHealth be a variable manipulated in the 'fighting' function, doesn't need to be declared here
-	public static void main(String[] args) {
-		
-		// generating a random number between 0 and 100 for damage
-		Random damageGen = new Random();
-		int mainPlayerDamage = damageGen.nextInt(101);
-		int enemyDamage = damageGen.nextInt(101);
-		
-		// instantiating an object of both character and abilities-- can use just mainPlayerAbilities to access everything in the Character class as well
-		Character mainPlayer = new Character("Crayon", "dog", "     __\n(__()'`;\n/,    /`\n\\\\\"--\\\\", 100);
-		Abilities mainPlayerAbilities = mainPlayer.new Abilities("Crayon", "dog", "     __\n(__()'`;\n/,    /`\n\\\\\"--\\\\", 100, "Bark", "Crayon barks at his enemies and scares them", mainPlayerDamage);
-		
-		Character enemy = new Character("Marker", "cat", " ", 100);
-		Abilities enemyAbilities = enemy.new Abilities("Marker", "cat", " ", 100, "Hiss", "Marker hisses at enemies", enemyDamage);
-		
-		// declaring ability details to be more interesting text
-		mainPlayerAbilities.characterAbilityDetails = "Crayon barks at his enemies, scaring them and dealing " + mainPlayerAbilities.characterAbilityDamage + " damage";
-		enemyAbilities.characterAbilityDetails = "Marker hisses at enemies, dealing " + enemyAbilities.characterAbilityDamage + " damage";
-		
-		System.out.println("Name is: " + mainPlayerAbilities.characterName);
-		System.out.println("type is: " + mainPlayer.characterType);
-		System.out.println("max health is: " + mainPlayerAbilities.characterMaxHealth);
-		System.out.println("ability is: " + mainPlayerAbilities.characterAbility);
-		System.out.println("damage is: " + mainPlayerAbilities.characterAbilityDamage);
-		System.out.println("details are: " + mainPlayerAbilities.characterAbilityDetails + "\n");
-		System.out.println("appears as:\n" + mainPlayerAbilities.characterAppears);
-
-	}
+//	public static void main(String[] args) {
+//
+//	}
 	
 
 }
