@@ -6,14 +6,16 @@ public class Character {
 	// instance/declare variables
 	String characterName;
 	String characterType;
+	String characterAppears;
 	int characterMaxHealth;
 	// should separate ability details from character details
 	
 	
 	// setup of characters--- i think abilities should be a separate class dependent on the character class
-	public Character (String characterName, String characterType, int characterMaxHealth) {
+	public Character (String characterName, String characterType, String characterAppears, int characterMaxHealth) {
 		this.characterName = characterName;
 		this.characterType = characterType;
+		this.characterAppears = characterAppears;
 		this.characterMaxHealth = characterMaxHealth;
 	}
 	
@@ -25,12 +27,13 @@ public class Character {
 		int characterAbilityDamage;
 		
 		public Abilities (String characterName, 
-				String characterType, 
+				String characterType,
+				String characterAppears,
 				int characterMaxHealth, 
 				String characterAbility, 
 				String characterAbilityDetails, 
 				int characterAbilityDamage) {
-			super(characterName, characterType, characterMaxHealth);
+			super(characterName, characterType, characterAppears, characterMaxHealth);
 			this.characterAbility = characterAbility;
 			this.characterAbilityDetails = characterAbilityDetails;
 			this.characterAbilityDamage = characterAbilityDamage;
@@ -46,11 +49,11 @@ public class Character {
 		int enemyDamage = damageGen.nextInt(101);
 		
 		// instantiating an object of both character and abilities-- can use just mainPlayerAbilities to access everything in the Character class as well
-		Character mainPlayer = new Character("Crayon", "dog", 100);
-		Abilities mainPlayerAbilities = mainPlayer.new Abilities("Crayon", "dog", 100, "Bark", "Crayon barks at his enemies and scares them", mainPlayerDamage);
+		Character mainPlayer = new Character("Crayon", "dog", "     __\n(__()'`;\n/,    /`\n\\\\\"--\\\\", 100);
+		Abilities mainPlayerAbilities = mainPlayer.new Abilities("Crayon", "dog", "     __\n(__()'`;\n/,    /`\n\\\\\"--\\\\", 100, "Bark", "Crayon barks at his enemies and scares them", mainPlayerDamage);
 		
-		Character enemy = new Character("Marker", "cat", 100);
-		Abilities enemyAbilities = enemy.new Abilities("Marker", "cat", 100, "Hiss", "Marker hisses at enemies", enemyDamage);
+		Character enemy = new Character("Marker", "cat", " ", 100);
+		Abilities enemyAbilities = enemy.new Abilities("Marker", "cat", " ", 100, "Hiss", "Marker hisses at enemies", enemyDamage);
 		
 		// declaring ability details to be more interesting text
 		mainPlayerAbilities.characterAbilityDetails = "Crayon barks at his enemies, scaring them and dealing " + mainPlayerAbilities.characterAbilityDamage + " damage";
@@ -61,7 +64,9 @@ public class Character {
 		System.out.println("max health is: " + mainPlayerAbilities.characterMaxHealth);
 		System.out.println("ability is: " + mainPlayerAbilities.characterAbility);
 		System.out.println("damage is: " + mainPlayerAbilities.characterAbilityDamage);
-		System.out.println("details are: " + mainPlayerAbilities.characterAbilityDetails);
+		System.out.println("details are: " + mainPlayerAbilities.characterAbilityDetails + "\n");
+		System.out.println("appears as:\n" + mainPlayerAbilities.characterAppears);
+
 	}
 	
 
